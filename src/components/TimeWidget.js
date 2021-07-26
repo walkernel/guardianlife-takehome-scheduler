@@ -1,11 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import './TimeWidget.css'
+/* helper functions for generating random numbers*/
 function randomInt(min, max){
     return Math.floor(Math.random()*(max-min+1)+min);
 }
 function randomIntRange(start, range){
     return randomInt(start, start+range);
 }
+/*
+    ScheduledItem is an element within a schedule row, that fills the grid of ScheduleRow from startTime to endTime
+    ScheduledItem represents an Item in the row
+    props:
+        startTime: start index of grid
+        endTime: end index of grid
+        color: color changes based on type of scheduled item
+*/
 const ScheduledItem = (props)=>{
     let style={
         gridColumnStart:props.startTime, 
@@ -16,6 +25,16 @@ const ScheduledItem = (props)=>{
     return(props.startTime?<div className="scheduled-item" style={style}></div>:<></>
     )
 }
+
+/*
+    ScheduleRow is a grid that is filled by ScheduledItems whose time are currently within the visible range
+    ScheduleRow represents a layer in the schedule
+    props:
+        cTime: the current time provided by the TimeWidget
+        scheduledItems: all scheduled items provided to this row
+    state:
+        validItems: validItems is a list of scheduled items that are currently visible according to cTime 
+        */
 const ScheduleRow = (props) =>{
     let [validItems, setValidItems] = useState([]);
     const colors=["#50A31D", "#C79300", "#6767B5"]
@@ -46,6 +65,23 @@ const ScheduleRow = (props) =>{
     ) 
 
 }
+/*
+    TimeWidgetContainer is the scheduler widget, whose header contains visual info, and body is composed of Scheduler Rows
+    ScheduleRows are passed the items and recylced, not updated
+    props: 
+        maxTime: length in ticks of the schedule
+    state:
+        currentTime: current tick, controlled by horizontal slider
+        minTime: start time of widget
+        schedule: holds items that are passed to rows
+        scrollLoc: current verical scroll index, controlled by vertical slider
+        itemStates: holds counts of each type of item (red, green, blue)
+    functions:
+        generate10(): generates 10 rows of randomly scheduled items
+        addLayer(): generates 1 row of randomly scheduled items and adds it to schedule
+        countItems(): updates itemStates with count of each item type
+        generateSchedule(maxTime):returns an array that represents a row of scheduled items starting from 0 and going to maxTime
+*/
 class TimeWidgetContainer extends React.Component{
     constructor(props){
         super(props);
