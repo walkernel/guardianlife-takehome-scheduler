@@ -1,24 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
-
+import {useState} from 'react'
+import TimeWidget from './components/TimeWidget.js'
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  let [maxLength, setMaxLength] = useState(3000);
+  return (<>
+    <label for="schedule-length">Schedule Length(ticks) </label>
+    <input type="number" id="schedule-length" value={maxLength} onChange={e=>setMaxLength(Number(e.target.value))}/>
+    <div className="guardian-body">
+      <TimeWidget maxTime={maxLength} />
     </div>
+    </>
   );
 }
 

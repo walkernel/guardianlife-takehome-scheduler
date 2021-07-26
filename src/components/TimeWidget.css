@@ -1,0 +1,110 @@
+.widget-container{
+    position: relative;
+    width:50em;
+    height:20em;
+    border-radius:5px;
+    overflow: hidden;
+}
+.widget-head{
+    background-color:gray;
+    height:3em;
+    width:100%;
+    border:2px solid grey;
+}
+.widget-body{
+    height: 15.7em;
+    border:2px solid gray;
+}
+.body-content{
+    width:48.5em;
+    height:100%;
+    display:inline-block;
+    vertical-align:top;
+    user-select: none;
+}
+.body-scroll{
+    width:0.8em;
+    height:100%;
+    display:inline-block;
+}
+.widget-footer{
+    height:1em;
+}
+.h-scroll{
+    width:100%;
+    margin:0;
+}
+.schedule-row{
+    height:10%;
+    display:grid;
+    background-color:rgba(128, 128, 128,0.5);
+    background-color:rgba(81, 101, 127,0.5);
+    
+    grid-template-columns: repeat(70, 1fr);
+}
+.schedule-dark{
+    background-color:rgba(57, 71, 91,0.5);
+    
+}
+.scheduled-item{
+    border:1px solid black;
+    box-sizing:border-box;
+}
+.head-timeline{
+    display:grid;
+    grid-template-columns:repeat(70,minmax(0,1fr));
+    height:32px;
+    width:48.5em;
+}
+.v-scroll{
+    transform:rotate(90deg);
+    margin-left: -110px;
+    margin-top: 115px;
+    width: 18em;
+}
+.tick{
+    margin:0;
+    font-size:8px;
+    overflow:hidden;
+    display:block;}
+.tick-number{
+    position:relative;
+    overflow: visible;
+    
+}  
+.background-body{
+    display:grid;
+    grid-template-columns:repeat(70,1fr);
+    transform:scaleY(45);
+    position:absolute;
+    width:48.5em;
+    left:2px;
+    z-index: -1000;
+}
+.foreground-body{
+    width:48.5em;
+    position:absolute;
+    left:2px;
+    top:35px;
+    height:16.5em;
+    overflow: hidden;
+    z-index:100;
+
+}
+.center-line{
+    text-align: center;
+    transform:scaleY(45);
+    user-select: none;
+}
+.add-layer{
+    z-index:100;
+    
+}
+.head-info{
+    display:flex;
+    margin:0;
+    align-items:center;
+    justify-content: space-around;
+    width:100%;
+} 
+.info{margin:0;}
