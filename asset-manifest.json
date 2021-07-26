@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/walkernel.github.io/guardianlife-takehome-scheduler/static/css/main.61e6f21f.chunk.css",
-    "main.js": "/walkernel.github.io/guardianlife-takehome-scheduler/static/js/main.0c99607e.chunk.js",
-    "main.js.map": "/walkernel.github.io/guardianlife-takehome-scheduler/static/js/main.0c99607e.chunk.js.map",
-    "runtime-main.js": "/walkernel.github.io/guardianlife-takehome-scheduler/static/js/runtime-main.b6a7f698.js",
-    "runtime-main.js.map": "/walkernel.github.io/guardianlife-takehome-scheduler/static/js/runtime-main.b6a7f698.js.map",
-    "static/js/2.6ef54287.chunk.js": "/walkernel.github.io/guardianlife-takehome-scheduler/static/js/2.6ef54287.chunk.js",
-    "static/js/2.6ef54287.chunk.js.map": "/walkernel.github.io/guardianlife-takehome-scheduler/static/js/2.6ef54287.chunk.js.map",
-    "static/js/3.fb605665.chunk.js": "/walkernel.github.io/guardianlife-takehome-scheduler/static/js/3.fb605665.chunk.js",
-    "static/js/3.fb605665.chunk.js.map": "/walkernel.github.io/guardianlife-takehome-scheduler/static/js/3.fb605665.chunk.js.map",
-    "index.html": "/walkernel.github.io/guardianlife-takehome-scheduler/index.html",
-    "static/css/main.61e6f21f.chunk.css.map": "/walkernel.github.io/guardianlife-takehome-scheduler/static/css/main.61e6f21f.chunk.css.map",
-    "static/js/2.6ef54287.chunk.js.LICENSE.txt": "/walkernel.github.io/guardianlife-takehome-scheduler/static/js/2.6ef54287.chunk.js.LICENSE.txt"
+    "main.css": "/guardianlife-takehome-scheduler/static/css/main.61e6f21f.chunk.css",
+    "main.js": "/guardianlife-takehome-scheduler/static/js/main.0c99607e.chunk.js",
+    "main.js.map": "/guardianlife-takehome-scheduler/static/js/main.0c99607e.chunk.js.map",
+    "runtime-main.js": "/guardianlife-takehome-scheduler/static/js/runtime-main.16fb54ed.js",
+    "runtime-main.js.map": "/guardianlife-takehome-scheduler/static/js/runtime-main.16fb54ed.js.map",
+    "static/js/2.6ef54287.chunk.js": "/guardianlife-takehome-scheduler/static/js/2.6ef54287.chunk.js",
+    "static/js/2.6ef54287.chunk.js.map": "/guardianlife-takehome-scheduler/static/js/2.6ef54287.chunk.js.map",
+    "static/js/3.fb605665.chunk.js": "/guardianlife-takehome-scheduler/static/js/3.fb605665.chunk.js",
+    "static/js/3.fb605665.chunk.js.map": "/guardianlife-takehome-scheduler/static/js/3.fb605665.chunk.js.map",
+    "index.html": "/guardianlife-takehome-scheduler/index.html",
+    "static/css/main.61e6f21f.chunk.css.map": "/guardianlife-takehome-scheduler/static/css/main.61e6f21f.chunk.css.map",
+    "static/js/2.6ef54287.chunk.js.LICENSE.txt": "/guardianlife-takehome-scheduler/static/js/2.6ef54287.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.b6a7f698.js",
+    "static/js/runtime-main.16fb54ed.js",
     "static/js/2.6ef54287.chunk.js",
     "static/css/main.61e6f21f.chunk.css",
     "static/js/main.0c99607e.chunk.js"
