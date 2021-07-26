@@ -4,7 +4,7 @@ import TimeWidget from './components/TimeWidget.js'
 function App() {
   let [maxLength, setMaxLength] = useState(3000);
   return (<>
-    <label for="schedule-length">Schedule Length(ticks) </label>
+    <label htmlFor="schedule-length">Schedule Length(ticks) </label>
     <input type="number" id="schedule-length" value={maxLength} onChange={e=>setMaxLength(Number(e.target.value))}/>
     <div className="guardian-body">
       <TimeWidget maxTime={maxLength} />

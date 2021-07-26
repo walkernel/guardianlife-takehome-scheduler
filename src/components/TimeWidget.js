@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './TimeWidget.css'
 function randomInt(min, max){
     return Math.floor(Math.random()*(max-min+1)+min);
@@ -16,51 +16,35 @@ const ScheduledItem = (props)=>{
     return(props.startTime?<div className="scheduled-item" style={style}></div>:<></>
     )
 }
-class ScheduleRow extends React.Component{
-    constructor(props){
-        super(props);
-        this.state={
-            validItems:[]
-        }
-        //Green,Yellow,Purple
-        this.colors=["#50A31D", "#C79300", "#6767B5"]
-    }
-    componentDidMount(){
-        this.filterValidItems();
-
-    }
-    componentDidUpdate(prevProps, prevState, snapShot){
-        if(prevProps.cTime!==this.props.cTime||prevProps.scheduledItems!==this.props.scheduledItems){
-            this.filterValidItems();
-        }
-    }
-    filterValidItems(){
-        const minTime = this.props.cTime;
-        const maxTime = this.props.cTime+70;
-        const validItems = this.props.scheduledItems?.filter(([startTime, endTime, itemState])=>{
+const ScheduleRow = (props) =>{
+    let [validItems, setValidItems] = useState([]);
+    const colors=["#50A31D", "#C79300", "#6767B5"]
+    useEffect(()=>{
+        const minTime = props.cTime;
+        const maxTime = props.cTime+70;
+        const validItems = props.scheduledItems?.filter(([startTime, endTime, itemState])=>{
             return ((startTime>=minTime&&startTime<maxTime)||(startTime<minTime&&endTime>minTime))
         })
-        this.setState({validItems:validItems});
-    }
-    
-    render(){
-        return(
-            <div className={this.props.bg===1?"schedule-row schedule-dark":"schedule-row"}>
-                {/* First four components are recycled, any more get added afterwards*/}
-                <ScheduledItem color={this.colors[this.state.validItems?.[0]?.[2]]} startTime={Math.max(1, this.state.validItems?.[0]?.[0]-this.props.cTime)} endTime={this.state.validItems?.[0]?.[1]-this.props.cTime+1} />
-                <ScheduledItem color={this.colors[this.state.validItems?.[1]?.[2]]}startTime={Math.max(1, this.state.validItems?.[1]?.[0]-this.props.cTime)} endTime={this.state.validItems?.[1]?.[1]-this.props.cTime+1} />
-                <ScheduledItem color={this.colors[this.state.validItems?.[2]?.[2]]}startTime={Math.max(1, this.state.validItems?.[2]?.[0]-this.props.cTime)} endTime={this.state.validItems?.[2]?.[1]-this.props.cTime+1} />
-                <ScheduledItem color={this.colors[this.state.validItems?.[3]?.[2]]}startTime={Math.max(1, this.state.validItems?.[3]?.[0]-this.props.cTime)} endTime={this.state.validItems?.[3]?.[1]-this.props.cTime+1} />
-                {this.state.validItems?.length>3?this.state.validItems?.filter((item, ind)=>ind>3).map(([startTime, endTime, color], ind)=>{
-                    return <ScheduledItem key={ind} color={this.colors[color]} startTime={Math.max(1, startTime-this.props.cTime)} endTime={endTime-this.props.cTime+1} />
-                }):<></>}
+        setValidItems(validItems);
+    },[props.cTime,props.scheduledItems])
 
-                {/* PRE-OPTIMIZATION */ /*this.state.validItems?.map(([startTime, endTime], ind)=>{
-                    return <ScheduledItem key={ind} startTime={Math.max(1, startTime-this.props.cTime)} endTime={endTime-this.props.cTime+1} />
-                })*/}
-            </div>
-        ) 
-    }
+    return(
+        <div className={props.bg===1?"schedule-row schedule-dark":"schedule-row"}>
+            {/* First four components are recycled, any more get added afterwards*/}
+            <ScheduledItem color={colors[validItems?.[0]?.[2]]} startTime={Math.max(1, validItems?.[0]?.[0]-props.cTime)} endTime={validItems?.[0]?.[1]-props.cTime+1} />
+            <ScheduledItem color={colors[validItems?.[1]?.[2]]}startTime={Math.max(1, validItems?.[1]?.[0]-props.cTime)} endTime={validItems?.[1]?.[1]-props.cTime+1} />
+            <ScheduledItem color={colors[validItems?.[2]?.[2]]}startTime={Math.max(1, validItems?.[2]?.[0]-props.cTime)} endTime={validItems?.[2]?.[1]-props.cTime+1} />
+            <ScheduledItem color={colors[validItems?.[3]?.[2]]}startTime={Math.max(1, validItems?.[3]?.[0]-props.cTime)} endTime={validItems?.[3]?.[1]-props.cTime+1} />
+            {validItems?.length>3?validItems?.filter((item, ind)=>ind>3).map(([startTime, endTime, color], ind)=>{
+                return <ScheduledItem key={ind} color={colors[color]} startTime={Math.max(1, startTime-props.cTime)} endTime={endTime-props.cTime+1} />
+            }):<></>}
+
+            {/* PRE-OPTIMIZATION */ /*this.state.validItems?.map(([startTime, endTime], ind)=>{
+                return <ScheduledItem key={ind} startTime={Math.max(1, startTime-props.cTime)} endTime={endTime-props.cTime+1} />
+            })*/}
+        </div>
+    ) 
+
 }
 class TimeWidgetContainer extends React.Component{
     constructor(props){
@@ -108,15 +92,15 @@ class TimeWidgetContainer extends React.Component{
                         <button className="add-layer" onClick={()=>this.addLayer()}>Add Layer</button>
                     </div>
                     <div className="head-timeline">
-                        {[...Array(70)].map((item,ind)=><><p className="tick tick-number">{(ind+this.state.currentTime)%5===0?ind+this.state.currentTime:""}</p></>)}
-                        {[...Array(70)].map((item,ind)=><><p className="tick">|</p></>)}
+                        {[...Array(70)].map((item,ind)=><p key={ind} className="tick tick-number">{(ind+this.state.currentTime)%5===0?ind+this.state.currentTime:""}</p>)}
+                        {[...Array(70)].map((item,ind)=><><p key={ind}className="tick">|</p></>)}
                         
                     </div>
                 </div>
                 <div className="widget-body">
                     <div className="body-content">
                         <div className="background-body">
-                        {[...Array(70)].map((item,ind)=><><p className="tick">{(ind+this.state.currentTime)%5===0?"|":""}</p></>)}
+                        {[...Array(70)].map((item,ind)=><><p key={ind} className="tick">{(ind+this.state.currentTime)%5===0?"|":""}</p></>)}
 
                         </div>
                             {/* rows get recycled,bg changes with scroll to emulate movement*/}
